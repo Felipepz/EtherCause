@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface do Usuário - Carteira de Doação</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #F4F7FA;
+        }
+
+        /* Wrapper para garantir layout vertical */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header fixo no topo */
+        header.header {
+            background-color: #1B4332;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Conteúdo centralizado e flexível */
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .interface-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(81, 94, 125, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .interface-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-custom {
+            background-color: #4A403A;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .btn-custom:hover {
+            background-color: #4A403A;
+        }
+
+        .output {
+            margin-top: 15px;
+        }
+
+        /* Footer sempre no final da página */
+        footer {
+            background-color: #4A403A;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+    </style> 
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/LineIcons.3.0.css" />
+    <link rel="stylesheet" href="/assets/css/animate.css" />
+    <link rel="stylesheet" href="/assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body> 
+
+    <header class="header navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="nav-inner">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/index.html">
+                                <img src="/assets/images/logo/dassadas-removebg-preview.png" alt="Logo">
+                            </a>
+                            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a href="/index.html" class="active" aria-label="Toggle navigation">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="btn btn-custom" onclick="conectarCarteira()">Conectar a Carteira</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="interfaceUser.html" class="active" aria-label="Toggle navigation">Interface do Usuário</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="button">
+                                <a href="/assets/html/donate.html" class="btn">Doe Agora</a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <div class="content">
+            <div class="registro-box">
+                <h2>Registro de Doações</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Doador</th>
+                            <th>Causa</th>
+                            <th>Valor</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaDoacoes">
+                        <!-- As doações serão inseridas aqui -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer class="footer section">
+            <div class="container">
+                <p>© 2024 EtherCause - Todos os Direitos Reservados</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+    <script>
+        const contratoEndereco = "0xAa5d5Bb0eC1e9bD00B62D4B3458e8550bCc77b5f";
+        const contratoABI = [
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "nome",
+                    "type": "string"
+                }
+            ],
+            "name": "adicionarCausa",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "novaCarteira",
+                    "type": "address"
+                }
+            ],
+            "name": "alterarCarteira",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "_wallet",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "string",
+                    "name": "nome",
+                    "type": "string"
+                }
+            ],
+            "name": "CausaCriada",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "doador",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "string",
+                    "name": "causa",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "valor",
+                    "type": "uint256"
+                }
+            ],
+            "name": "DoacaoRecebida",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "causa",
+                    "type": "string"
+                }
+            ],
+            "name": "doar",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "name": "causas",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "nome",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "totalDoado",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "doacoes",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "doador",
+                    "type": "address"
+                },
+                {
+                    "internalType": "string",
+                    "name": "causa",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "valor",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "data",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getDoacoes",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "address",
+                            "name": "doador",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "causa",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "valor",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "data",
+                            "type": "uint256"
+                        }
+                    ],
+                    "internalType": "struct EtherCause.Doacao[]",
+                    "name": "",
+                    "type": "tuple[]"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "totalDoacoes",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "wallet",
+            "outputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ];
+    
+    let web3;
+    let contrato;
+
+    async function conectarMetaMask() {
+        if (window.ethereum) {
+            try {
+                await window.ethereum.request({ method: "eth_requestAccounts" });
+                web3 = new Web3(window.ethereum);
+                contrato = new web3.eth.Contract(contratoABI, contratoEndereco);
+
+                console.log("MetaMask conectado");
+                console.log("Contrato conectado:", contrato);  // Verificar se o contrato foi conectado
+
+                carregarHistorico();
+            } catch (err) {
+                console.error("Erro ao conectar carteira:", err);
+            }
+        } else {
+            alert("Por favor, instale o MetaMask!");
+        }
+    }
+
+    async function carregarHistorico() {
+        try {
+            console.log("Carregando histórico de doações...");
+            const doacoes = await contrato.methods.getDoacoes().call();
+            console.log("Doações recebidas:", doacoes);  // Verifique os dados recebidos
+    
+            // Verifique se não há dados
+            if (!doacoes || doacoes.length === 0) {
+                console.log("Nenhuma doação registrada.");
+                const listaDoacoes = document.getElementById("listaDoacoes");
+                listaDoacoes.innerHTML = '<tr><td colspan="4">Nenhuma doação encontrada.</td></tr>';
+                return;
+            }
+    
+            // Limpar a lista de doações antes de carregar as novas
+            const listaDoacoes = document.getElementById("listaDoacoes");
+            listaDoacoes.innerHTML = '';
+    
+            // Exibir doações
+            doacoes.forEach(doacao => {
+                if (doacao.doador && doacao.causa && doacao.valor && doacao.data) {
+                    const valorEmEther = web3.utils.fromWei(doacao.valor.toString(), "ether");
+    
+                    const linha = document.createElement("tr");
+    
+                    // Corrigindo a interpolação de string
+                    linha.innerHTML = `
+                        <td>${doacao.doador}</td>
+                        <td>${doacao.causa}</td>
+                        <td>${valorEmEther} ETH</td>
+                        <td>${new Date(doacao.data * 1000).toLocaleString()}</td>
+                    `;
+    
+                    listaDoacoes.appendChild(linha);
+                } else {
+                    console.error("Dados inválidos de doação:", doacao);
+                }
+            });
+        } catch (err) {
+            console.error("Erro ao carregar histórico de doações:", err);
+            alert("Erro ao carregar histórico de doações. Detalhes no console.");
+        }
+    }
+    
+    window.onload = conectarMetaMask;
+    </script>
+    
+</body>
+</html>

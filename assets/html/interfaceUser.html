@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface do Usuário - Carteira de Doação</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #F4F7FA;
+        }
+
+        /* Wrapper para garantir layout vertical */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header fixo no topo */
+        header.header {
+            background-color: #1B4332;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Conteúdo centralizado e flexível */
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .interface-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(81, 94, 125, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .interface-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-custom {
+            background-color: #4A403A;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .btn-custom:hover {
+            background-color: #4A403A;
+        }
+
+        .output {
+            margin-top: 15px;
+        }
+
+        /* Footer sempre no final da página */
+        footer {
+            background-color: #4A403A;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+    </style> 
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/LineIcons.3.0.css" />
+    <link rel="stylesheet" href="/assets/css/animate.css" />
+    <link rel="stylesheet" href="/assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body> 
+
+    <header class="header navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="nav-inner">
+                        <!-- Start Navbar -->
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/index.html">
+                                <img src="/assets/images/logo/dassadas-removebg-preview.png" alt="Logo">
+                            </a>
+                            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a href="/index.html" class="active" aria-label="Toggle navigation">Home</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="registroDoa.html" class="active" aria-label="Toggle navigation">Registro doações</a>
+                                    </li>
+                                    <!--<li class="nav-item">
+                                        <a href="about-us.html" aria-label="Toggle navigation">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
+                                            data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent"
+                                            aria-expanded="false" aria-label="Toggle navigation">Pages</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-1">
+                                            <li class="nav-item"><a href="about-us.html">About Us</a></li>
+                                            <li class="nav-item"><a href="signin.html">Sign In</a></li>
+                                            <li class="nav-item"><a href="signup.html">Sign Up</a></li>
+                                            <li class="nav-item"><a href="reset-password.html">Reset Password</a>
+                                            <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
+                                            <li class="nav-item"><a href="404.html">404 Error</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
+                                            data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
+                                            aria-expanded="false" aria-label="Toggle navigation">Blog</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-2">
+                                            <li class="nav-item"><a href="blog-grid.html">Blog Grid</a>
+                                            </li>
+                                            <li class="nav-item"><a href="blog-single.html">Blog Single</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="contact.html" aria-label="Toggle navigation">Contact</a>
+                                    </li>
+                                </ul>
+                            -->
+                            </div> <!-- navbar collapse -->
+                            <div class="button">
+                                <a href="/assets/html/donate.html" class="btn">Doe Agora</a>
+                            </div>
+                            
+                        </nav>
+                        <!-- End Navbar -->
+                    </div>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </header>
+
+    <div class="wrapper">
+        <!-- Conteúdo Principal -->
+        <div class="content">
+            <div class="interface-box">
+                <h2>Interface de Doação</h2>
+
+                <button class="btn btn-custom" onclick="conectarCarteira()">Conectar Carteira</button>
+
+
+                <div class="mb-3">
+                    <label for="valorDoacao" class="form-label">Valor da Doação (ETH)</label>
+                    <input type="number" id="valorDoacao" class="form-control" placeholder="Digite o Valor da Doação">
+                </div>
+
+                <button class="btn btn-custom" onclick="doar()">Doar</button>
+                <button class="btn btn-custom" onclick="mostrarHistorico()">Mostrar Histórico</button>
+
+                <div class="output">
+                    <p><strong>Endereço da Carteira:</strong> <span id="carteiraEndereco">--</span></p>
+                    <p><strong>Histórico:</strong> <span id="historicoDoacoes">Nenhuma doação registrada</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer section">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="inner-content">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="single-footer f-about">
+                                    <div class="logo">
+                                        <a href="index.html">
+                                            <img src="/assets/images/logo/dassadas-removebg-preview.png" alt="EtherCause Logo">
+                                        </a>
+                                    </div>
+                                    <p>Junte-se a nós para reconstruir o que foi perdido e proteger o futuro das nossas florestas.</p>
+                                    <ul class="social">
+                                        <li><a href="#"><i class="lni lni-facebook-filled"></i></a></li>
+                                        <li><a href="#"><i class="lni lni-instagram"></i></a></li>
+                                        <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="single-footer f-link">
+                                    <h3>Recursos</h3>
+                                    <ul>
+                                        <li><a href="#">Como Funciona</a></li>
+                                        <li><a href="#">Relatórios</a></li>
+                                        <li><a href="#">Voluntariado</a></li>
+                                        <li><a href="#">Contato</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="single-footer newsletter">
+                                    <h3>Receba Atualizações</h3>
+                                    <p>Inscreva-se para receber notícias sobre as áreas em recuperação.</p>
+                                    <form action="#" method="get" target="_blank" class="newsletter-form">
+                                        <input name="EMAIL" placeholder="Endereço de Email" required="required" type="email">
+                                        <div class="button">
+                                            <button class="sub-btn"><i class="lni lni-envelope"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-area">
+                <div class="container">
+                    <p>© 2024 EtherCause - Todos os Direitos Reservados</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        let enderecoCarteira = '';
+        let historico = [];
+
+        async function conectarCarteira() {
+            if (window.ethereum) {
+                try {
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    enderecoCarteira = accounts[0];
+                    document.getElementById('carteiraEndereco').textContent = enderecoCarteira;
+                    alert('Carteira conectada com sucesso!');
+                } catch (error) {
+                    alert('Erro ao conectar: ' + error.message);
+                }
+            } else {
+                alert('MetaMask não encontrado. Instale a extensão e tente novamente.');
+            }
+        }
+
+        function doar() {
+            const valor = parseFloat(document.getElementById('valorDoacao').value);
+            if (isNaN(valor) || valor <= 0) {
+                alert('Por favor, insira um valor válido.');
+                return;
+            }
+
+            historico.push(`Doação de ${valor} ETH`);
+            alert(`Doação de ${valor} ETH realizada com sucesso!`);
+            document.getElementById('valorDoacao').value = ''; // Limpa o campo de input
+        }
+
+        function mostrarHistorico() {
+            if (historico.length === 0) {
+                document.getElementById('historicoDoacoes').textContent = 'Nenhuma doação registrada.';
+            } else {
+                document.getElementById('historicoDoacoes').textContent = historico.join(', ');
+            }
+        }
+    </script>
+
+</body>
+</html>

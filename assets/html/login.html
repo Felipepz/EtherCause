@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <!-- Bootstrap Icons CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/uf-style.css">
+    <title>Formulário de Login</title>
+    <style>
+      body {
+        background: url(/assets/images/hero/DALL·E-2024-11-26-20.55.jpg) no-repeat center center fixed;
+        background-size: cover;
+      }
+      .uf-form-signin {
+        background: rgba(0, 0, 0, 0.7); /* Adds a semi-transparent background to the form */
+        padding: 20px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 400px;
+        margin: 50px auto;
+        color: white;
+      }
+      .text-white a {
+        color: #ddd;
+        text-decoration: none;
+      }
+      .text-white a:hover {
+        color: #fff;
+      }
+    </style>
+  </head> 
+
+  <body>
+    <div class="uf-form-signin">
+      <div class="text-center">
+        <h1 class="text-white h3">Login </h1>
+      </div>
+      <form class="mt-4">
+        <div class="input-group uf-input-group input-group-lg mb-3">
+          <span class="input-group-text"><i class="bi bi-person"></i></span>
+          <input type="text" class="form-control" placeholder="Usuário ou E-mail">
+        </div>
+        <div class="input-group uf-input-group input-group-lg mb-3">
+          <span class="input-group-text"><i class="bi bi-lock"></i></span>
+          <input type="password" class="form-control" placeholder="Senha">
+        </div>
+        <div class="d-flex mb-3 justify-content-between">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input uf-form-check-input" id="exampleCheck1">
+            <label class="form-check-label text-white" for="exampleCheck1">Lembrar-me</label>
+          </div>
+          <a href="#">Esqueceu a senha?</a>
+        </div>
+        <div class="d-grid mb-4">
+          <a href="/index.html" class="btn uf-btn-primary btn-lg">Entrar</a>
+        </div>   
+        <div class="d-flex mb-3">
+          <div class="dropdown-divider m-auto w-25"></div>
+          <small class="text-nowrap text-white">Ou entre com</small>
+          <div class="dropdown-divider m-auto w-25"></div>
+        </div>
+        <div class="uf-social-login d-flex justify-content-center">
+          <a href="#" class="uf-social-ic" title="Entrar com Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="uf-social-ic" title="Entrar com Twitter"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="uf-social-ic" title="Entrar com Google"><i class="bi bi-google"></i></a>
+        </div>
+        <div class="mt-4 text-center">
+          <span class="text-white">Não tem uma conta?</span>
+          <a href="register.html">Cadastre-se</a>
+        </div>
+      </form>
+    </div>
+
+    <!-- JavaScript -->
+    <!-- Separate Popper and Bootstrap JS -->
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+  </body>
+</html>

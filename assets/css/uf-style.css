@@ -1,0 +1,74 @@
+/*!
+ =========================================================
+ * Login Form Bootstrap 1
+ =========================================================
+ */
+ html, body {
+    height: 100%;
+}
+body {
+    display: flex;
+    align-items: center;
+    background-color: #F4F7FA; /* Substituído pelo background da paleta fornecida */
+}
+a {
+    color: #1B4332; /* Paleta */
+    text-decoration: none;
+}
+a:hover {
+    color: #4A403A; /* Paleta */
+}
+.uf-form-signin {
+    width: 100%;
+    max-width: 350px;
+    padding: 15px;
+    margin: auto;
+}
+.uf-input-group .input-group-text {
+    background: #ffffff70; /* Mantido para contraste */
+    color: #1B4332; /* Paleta */
+    border: unset;
+    font-size: 18px;
+    padding: 15px;
+    width: 50px;
+}
+.uf-input-group .form-control {
+    border: unset;
+    border-left: 1px solid #ffffff05;
+    font-size: 16px;
+    background: #ffffff70; /* Mantido para contraste */
+}
+.uf-input-group .form-control:focus {
+    box-shadow: unset;
+    background: #ffffff;
+}
+.uf-btn-primary {
+    background: #1B4332; /* Paleta */
+    color: #fff;
+}
+.uf-btn-primary:hover {
+    background: #4A403A; /* Paleta */
+    color: #fff;
+}
+.uf-form-check-input:checked {
+    background-color: #1B4332; /* Paleta */
+    border-color: #1B4332; /* Paleta */
+}
+.uf-social-login .uf-social-ic + .uf-social-ic {
+    margin-left: 15px;
+}
+.uf-social-ic {
+    width: 40px;
+    height: 40px;
+    background: #fff; /* Mantido para contraste */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.uf-social-ic:hover {
+    background: #1B4332; /* Paleta */
+}
+.uf-social-ic:hover i {
+    color: #fff;
+}
